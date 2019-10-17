@@ -6,7 +6,10 @@ namespace Problem2
     {
         private int[] arr;
 
-        public int Count => arr.Length;
+        public int Count
+        {
+            get { return arr.Length; }
+        }
 
         public MySimpleStack()
         {
@@ -35,10 +38,10 @@ namespace Problem2
         {
             if (act == "PUT")
             {
-                Array.Resize(ref arr, arr.Length + 1);
+                Array.Resize(ref arr, Count + 1);
             }else if (act == "POP")
             {
-                Array.Resize(ref arr, arr.Length - 1);
+                Array.Resize(ref arr, Count - 1);
             }
         }
     }
