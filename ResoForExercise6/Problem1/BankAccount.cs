@@ -3,18 +3,18 @@ namespace Problem1
 {
     public class BankAccount
     {
-        int money;
+        private int Money;
 
         public BankAccount(int amount)
         {
-            this.money = amount;
+            Money = amount;
         }
 
         public void WithDraw(int amount)
         {
-            if (amount > 0 && this.money > amount)
+            if (amount > 0 && Money > amount)
             {
-                this.money -= amount;
+                Money -= amount;
             }
         }
 
@@ -22,13 +22,13 @@ namespace Problem1
         {
             if (amount > 0)
             {
-                this.money += amount;
+                Money += amount;
             }
         }
 
         public int Balance()
         {
-            return this.money;
+            return Money;
         }
     }
 }
