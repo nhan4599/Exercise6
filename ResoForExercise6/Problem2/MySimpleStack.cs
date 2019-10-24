@@ -4,7 +4,7 @@ namespace Problem2
 {
     public class MySimpleStack
     {
-        private int[] buffer;
+        private object[] buffer;
         private int top;
 
         public int Count
@@ -14,16 +14,16 @@ namespace Problem2
 
         public MySimpleStack(int size)
         {
-            buffer = new int[size];
+            buffer = new object[size];
             top = -1;
         }
 
-        public void Push(int x)
+        public void Push(object x)
         {
             buffer[++top] = x;
         }
 
-        public int Pop()
+        public object Pop()
         {
             return buffer[top--];
         }
