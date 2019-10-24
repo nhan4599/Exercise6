@@ -2,7 +2,7 @@
 
 namespace Problem2
 {
-    class MySimpleStack
+    public class MySimpleStack
     {
         private int[] buffer;
         private int top;
