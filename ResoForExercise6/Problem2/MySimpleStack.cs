@@ -4,7 +4,7 @@ namespace Problem2
 {
     public class MySimpleStack
     {
-        private object[] buffer;
+        private readonly int[] buffer;
         private int top;
 
         public int Count
@@ -14,17 +14,25 @@ namespace Problem2
 
         public MySimpleStack(int size)
         {
-            buffer = new object[size];
+            buffer = new int[size];
             top = -1;
         }
 
-        public void Push(object x)
+        public void Push(int x)
         {
+            if (top == buffer.Length - 1)
+            {
+                throw new InvalidOperationException("Can't Push, this stack is full size");
+            }
             buffer[++top] = x;
         }
 
         public object Pop()
         {
+            if (top == -1)
+            {
+                throw new InvalidOperationException("Can't Pop, this stack is empty");
+            }
             return buffer[top--];
         }
 

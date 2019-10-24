@@ -4,7 +4,7 @@ namespace Problem3
 {
     class MySimpleQueue
     {
-        private int[] buffer;
+        private readonly int[] buffer;
         private int top;
         private int bot;
 
@@ -12,7 +12,7 @@ namespace Problem3
         {
             buffer = new int[size];
             top = -1;
-            bot = -1;
+            bot = 0;
         }
 
         public int Count
@@ -22,21 +22,28 @@ namespace Problem3
 
         public void Enqueue(int x)
         {
+            if (top == buffer.Length - 1)
+            {
+                throw new InvalidOperationException("Can't Enqueue, this queue is full size");
+            }
             buffer[++top] = x;
-            bot = top == 1 ? 0 : bot;
         }
 
         public int Dequeue()
         {
-            if (this.Count == 0)
+            if (bot > top)
             {
-                throw new InvalidOperationException("Can't dequeue, this queue didn't have anything");
+                throw new InvalidOperationException("Can't Dequeue, this queue is empty");
             }
             return buffer[bot++];
         }
 
         public int Peek()
         {
+            if (bot > top)
+            {
+                throw new InvalidOperationException("Can't Peek, this queue is empty");
+            }
             return buffer[bot];
         }
     }
