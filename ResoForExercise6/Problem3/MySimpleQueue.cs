@@ -4,47 +4,40 @@ namespace Problem3
 {
     class MySimpleQueue
     {
-        private int[] arr;
+        private int[] buffer;
+        private int top;
+        private int bot;
 
-        public MySimpleQueue()
+        public MySimpleQueue(int size)
         {
-            arr = new int[0];
+            buffer = new int[size];
+            top = -1;
+            bot = -1;
         }
 
         public int Count
         {
-            get { return arr.Length; }
+            get { return top - bot + 1; }
         }
 
-        public void Enqueue(int item)
+        public void Enqueue(int x)
         {
-            ReAllocMemory("Enqueue");
-            arr[Count - 1] = item;
+            buffer[++top] = x;
+            bot = top == 1 ? 0 : bot;
         }
 
         public int Dequeue()
         {
-            int value = arr[0];
-            ReAllocMemory("Dequeue");
-            return value;
+            if (this.Count == 0)
+            {
+                throw new InvalidOperationException("Can't dequeue, this queue didn't have anything");
+            }
+            return buffer[bot++];
         }
 
         public int Peek()
         {
-            return arr[0];
-        }
-
-        private void ReAllocMemory(string act)
-        {
-            if (act == "Enqueue")
-            {
-                Array.Resize(ref arr, Count + 1);
-            }else if (act == "Dequeue")
-            {
-                int[] temp = new int[Count - 1];
-                Array.Copy(arr, 1, temp, 0, temp.Length);
-                arr = temp;
-            }
+            return buffer[bot];
         }
     }
 }

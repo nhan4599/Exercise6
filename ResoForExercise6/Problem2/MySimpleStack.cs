@@ -4,45 +4,33 @@ namespace Problem2
 {
     class MySimpleStack
     {
-        private int[] arr;
+        private int[] buffer;
+        private int top;
 
         public int Count
         {
-            get { return arr.Length; }
+            get { return top + 1; }
         }
 
-        public MySimpleStack()
+        public MySimpleStack(int size)
         {
-            arr = new int[0];
+            buffer = new int[size];
+            top = -1;
         }
 
-        public void Put(int item)
+        public void Push(int x)
         {
-            ReAllocMemory("PUT");
-            arr[Count - 1] = item;
+            buffer[++top] = x;
         }
 
         public int Pop()
         {
-            int value = arr[Count - 1];
-            ReAllocMemory("POP");
-            return value;
+            return buffer[top--];
         }
 
-        public int Peek()
+        public void Clear()
         {
-            return arr[Count - 1];
-        }
-
-        private void ReAllocMemory(string act)
-        {
-            if (act == "PUT")
-            {
-                Array.Resize(ref arr, Count + 1);
-            }else if (act == "POP")
-            {
-                Array.Resize(ref arr, Count - 1);
-            }
+            top = -1;
         }
     }
 }
