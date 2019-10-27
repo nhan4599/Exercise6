@@ -11,27 +11,27 @@ namespace Problem3
         public MySimpleQueue(int size)
         {
             buffer = new int[size];
-            top = -1;
+            top = 0;
             bot = 0;
         }
 
         public int Count
         {
-            get { return top - bot + 1; }
+            get { return top - bot; }
         }
 
         public void Enqueue(int x)
         {
-            if (top == buffer.Length - 1)
+            if (top == buffer.Length)
             {
                 throw new InvalidOperationException("Can't Enqueue, this queue is full size");
             }
-            buffer[++top] = x;
+            buffer[top++] = x;
         }
 
         public int Dequeue()
         {
-            if (bot > top)
+            if (bot >= top)
             {
                 throw new InvalidOperationException("Can't Dequeue, this queue is empty");
             }
@@ -40,7 +40,7 @@ namespace Problem3
 
         public int Peek()
         {
-            if (bot > top)
+            if (bot >= top)
             {
                 throw new InvalidOperationException("Can't Peek, this queue is empty");
             }

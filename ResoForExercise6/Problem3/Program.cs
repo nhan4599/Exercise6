@@ -11,6 +11,7 @@ namespace Problem3
         static void Main(string[] args)
         {
             MySimpleQueue Q = new MySimpleQueue(10);
+            //Q.Dequeue();
             Q.Enqueue(1);	//Queue contains 1
             Q.Enqueue(2);	//Queue contains 1 2
             Q.Enqueue(3);	//Queue contains 1 2 3
